@@ -163,6 +163,13 @@ BYBIT_TRADING_ENABLED=false  # Set to true to enable trading operations
 uv run bybit-mcp
 ```
 
+To expose an HTTP API using Server-Sent Events instead of STDIO, set
+`MCP_TRANSPORT=sse` (and optionally `MCP_PORT` to change the port). This
+mode uses the `FastMCP` server from the `mcp` library to provide an SSE API:
+```bash
+MCP_TRANSPORT=sse MCP_PORT=8000 uv run bybit-mcp
+```
+
 ### Using pip
 
 ```bash
@@ -214,6 +221,8 @@ docker run -i --rm --init \
 - `BYBIT_API_SECRET`: Your Bybit API secret
 - `BYBIT_TESTNET`: Set to `true` to use the Bybit testnet (default is `false`)
 - `BYBIT_TRADING_ENABLED`: Set to `true` to enable trading operations (default is `false`)
+- `MCP_TRANSPORT`: `stdio` (default) to communicate over STDIO, or `sse` to expose an HTTP API
+- `MCP_PORT`: Port for the SSE server when `MCP_TRANSPORT=sse` (default `8000`)
 
 ### Safety Controls
 
